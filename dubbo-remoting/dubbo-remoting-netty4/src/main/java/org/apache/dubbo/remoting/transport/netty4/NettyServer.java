@@ -102,6 +102,7 @@ public class NettyServer extends AbstractServer implements RemotingServer {
                 .childHandler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch) throws Exception {
+                        // 链接释放时间,url.timeOut?
                         // FIXME: should we use getTimeout()?
                         int idleTimeout = UrlUtils.getIdleTimeout(getUrl());
                         NettyCodecAdapter adapter = new NettyCodecAdapter(getCodec(), getUrl(), NettyServer.this);
@@ -117,6 +118,7 @@ public class NettyServer extends AbstractServer implements RemotingServer {
                     }
                 });
         // bind
+        //
         ChannelFuture channelFuture = bootstrap.bind(getBindAddress());
         channelFuture.syncUninterruptibly();
         channel = channelFuture.channel();

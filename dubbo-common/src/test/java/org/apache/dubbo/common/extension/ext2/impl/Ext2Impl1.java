@@ -17,9 +17,11 @@
 package org.apache.dubbo.common.extension.ext2.impl;
 
 import org.apache.dubbo.common.URL;
+import org.apache.dubbo.common.extension.Adaptive;
 import org.apache.dubbo.common.extension.ext2.Ext2;
 import org.apache.dubbo.common.extension.ext2.UrlHolder;
 
+//@Adaptive
 public class Ext2Impl1 implements Ext2 {
     public String echo(UrlHolder holder, String s) {
         return "Ext2Impl1-echo";

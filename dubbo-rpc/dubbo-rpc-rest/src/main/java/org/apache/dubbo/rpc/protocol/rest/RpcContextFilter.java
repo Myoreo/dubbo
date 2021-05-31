@@ -16,6 +16,8 @@
  */
 package org.apache.dubbo.rpc.protocol.rest;
 
+import org.apache.dubbo.common.logger.Logger;
+import org.apache.dubbo.common.logger.LoggerFactory;
 import org.apache.dubbo.common.utils.StringUtils;
 import org.apache.dubbo.rpc.RpcContext;
 
@@ -34,6 +36,7 @@ import java.util.Map;
 
 @Priority(Integer.MIN_VALUE + 1)
 public class RpcContextFilter implements ContainerRequestFilter, ClientRequestFilter {
+    private static Logger logger = LoggerFactory.getLogger(RpcContextFilter.class);
 
     private static final String DUBBO_ATTACHMENT_HEADER = "Dubbo-Attachments";
 
@@ -42,6 +45,8 @@ public class RpcContextFilter implements ContainerRequestFilter, ClientRequestFi
 
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
+        logger.info("RpcContextFilter.filter...");
+        //设置RPCContext的request
         HttpServletRequest request = ResteasyProviderFactory.getContextData(HttpServletRequest.class);
         RpcContext.getContext().setRequest(request);
 

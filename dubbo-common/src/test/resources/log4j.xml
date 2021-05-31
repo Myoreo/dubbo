@@ -27,8 +27,15 @@
             <param name="ConversionPattern" value="%d %p [%c:%M] - %m%n"/>
         </layout>
     </appender>
+
+    <appender name="SYSOUT" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %p [%c:%M] - %m%n"/>
+        </layout>
+    </appender>
     <root>
         <level value="DEBUG"/>
-        <appender-ref ref="dubbo"/>
+        <!--<appender-ref ref="dubbo"/>-->
+        <appender-ref ref="SYSOUT"/>
     </root>
 </log4j:configuration>

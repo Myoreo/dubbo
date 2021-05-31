@@ -517,7 +517,7 @@ public class DubboBootstrap extends GenericEventListener {
     }
 
     /**
-     * Initialize
+     * Initialize 初始化配置
      */
     public void initialize() {
         if (!initialized.compareAndSet(false, true)) {

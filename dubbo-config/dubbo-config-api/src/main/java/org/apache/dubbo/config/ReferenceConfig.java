@@ -227,6 +227,7 @@ public class ReferenceConfig<T> extends ReferenceConfigBase<T> {
     }
 
     public synchronized void init() {
+        //服务引用
         if (initialized) {
             return;
         }

@@ -75,7 +75,9 @@ public class ListenerInvokerWrapper<T> implements Invoker<T> {
 
     @Override
     public Result invoke(Invocation invocation) throws RpcException {
-        return invoker.invoke(invocation);
+        Result result = invoker.invoke(invocation);
+        //logger.info("ListenerInvokerWrapper>invoke" + result);
+        return result;
     }
 
     @Override

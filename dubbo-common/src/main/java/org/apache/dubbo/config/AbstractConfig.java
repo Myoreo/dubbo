@@ -48,7 +48,7 @@ import static org.apache.dubbo.common.utils.ReflectUtils.findMethodByMethodSigna
 
 /**
  * Utility methods and public methods for parsing configuration
- *
+ * 配置解析和校验相关的工具方法
  * @export
  */
 public abstract class AbstractConfig implements Serializable {

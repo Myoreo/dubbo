@@ -26,7 +26,7 @@ import java.util.concurrent.CountDownLatch;
 
 public class Application {
     public static void main(String[] args) throws Exception {
-        if (isClassic(args)) {
+        if (!isClassic(args)) {
             startWithExport();
         } else {
             startWithBootstrap();

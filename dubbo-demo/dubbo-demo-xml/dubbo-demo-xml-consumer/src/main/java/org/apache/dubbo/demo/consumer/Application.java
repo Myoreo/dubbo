@@ -16,8 +16,9 @@
  */
 package org.apache.dubbo.demo.consumer;
 
+//import org.apache.dubbo.demo.DeMoService;
 import org.apache.dubbo.demo.DemoService;
-import org.apache.dubbo.demo.GreetingService;
+//import org.apache.dubbo.demo.GreetingService;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -32,9 +33,10 @@ public class Application {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("spring/dubbo-consumer.xml");
         context.start();
         DemoService demoService = context.getBean("demoService", DemoService.class);
-        GreetingService greetingService = context.getBean("greetingService", GreetingService.class);
+        //DeMoService deMoService = context.getBean(DeMoService.class);
+        //GreetingService greetingService = context.getBean("greetingService", GreetingService.class);
 
-        new Thread(() -> {
+  /*      new Thread(() -> {
             while (true) {
                 try {
                     String greetings = greetingService.hello();
@@ -45,20 +47,21 @@ public class Application {
                     e.printStackTrace();
                 }
             }
-        }).start();
+        }).start();*/
 
         while (true) {
             try {
-                CompletableFuture<String> hello = demoService.sayHelloAsync("world");
-                System.out.println("result: " + hello.get());
+               CompletableFuture<String> hello = demoService.sayHelloAsync("world");
+               System.out.println("result: " + hello.get());
 
-                String greetings = greetingService.hello();
-                System.out.println("result: " + greetings);
+
+                //String greetings = greetingService.hello();
+                //System.out.println("result: " + greetings);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            Thread.sleep(500);
+            Thread.sleep(5000);
         }
     }
 }

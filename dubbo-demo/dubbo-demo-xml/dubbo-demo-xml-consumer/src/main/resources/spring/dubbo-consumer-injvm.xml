@@ -21,21 +21,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
        http://dubbo.apache.org/schema/dubbo http://dubbo.apache.org/schema/dubbo/dubbo.xsd">
 
-    <dubbo:application name="demo-consumer">
-        <dubbo:parameter key="mapping-type" value="metadata"/>
-    </dubbo:application>
+    <dubbo:application name="demo-injvm"/>
 
-    <!--    <dubbo:metadata-report address="zookeeper://127.0.0.1:2181"/>-->
+    <dubbo:registry address="N/A"/>
 
-    <dubbo:registry address="zookeeper://127.0.0.1:2181?registry-type=service"/>
+    <dubbo:reference id="demoService" interface="org.apache.dubbo.demo.DemoService" protocol="injvm" scope="local" />
 
-    <dubbo:reference id="demoService"
-                     interface="org.apache.dubbo.demo.DemoService"/>
+    <bean id="demoServiceImpl" class="org.apache.dubbo.demo.consumer.DemoServiceImpl"/>
 
-<!--    <dubbo:reference id="deMoService" check="false"
-                     interface="org.apache.dubbo.demo.DeMoService"/>-->
-
- <!--   <dubbo:reference version="1.0.0" group="greeting" id="greetingService" check="false"
-                     interface="org.apache.dubbo.demo.GreetingService"/>-->
-
+    <dubbo:service interface="org.apache.dubbo.demo.DemoService" ref="demoServiceImpl" protocol="injvm" scope="local" />
 </beans>

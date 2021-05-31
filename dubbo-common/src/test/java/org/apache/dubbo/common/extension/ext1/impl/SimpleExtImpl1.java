@@ -18,10 +18,17 @@ package org.apache.dubbo.common.extension.ext1.impl;
 
 import org.apache.dubbo.common.URL;
 import org.apache.dubbo.common.extension.ext1.SimpleExt;
+import org.apache.dubbo.common.extension.ext2.Ext2;
+import org.apache.dubbo.common.extension.ext2.UrlHolder;
 
 public class SimpleExtImpl1 implements SimpleExt {
+    private Ext2 ext2;
+
     public String echo(URL url, String s) {
-        return "Ext1Impl1-echo";
+        // return "Ext1Impl1-echo";
+        UrlHolder urlHolder = new UrlHolder();
+        urlHolder.setUrl(url);
+        return "ext2 echo:" + ext2.echo(urlHolder, "");
     }
 
     public String yell(URL url, String s) {
@@ -30,5 +37,9 @@ public class SimpleExtImpl1 implements SimpleExt {
 
     public String bang(URL url, int i) {
         return "bang1";
+    }
+
+    public void setExt2(Ext2 ext2) {
+        this.ext2 = ext2;
     }
 }

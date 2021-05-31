@@ -36,6 +36,7 @@ public class AdaptiveExtensionFactory implements ExtensionFactory {
         ExtensionLoader<ExtensionFactory> loader = ExtensionLoader.getExtensionLoader(ExtensionFactory.class);
         List<ExtensionFactory> list = new ArrayList<ExtensionFactory>();
         for (String name : loader.getSupportedExtensions()) {
+            //保存所有已加载的 ExtensionLoader.cachedClasses
             list.add(loader.getExtension(name));
         }
         factories = Collections.unmodifiableList(list);

@@ -29,13 +29,18 @@
     <dubbo:metadata-report address="zookeeper://127.0.0.1:2181"/>
     <dubbo:registry id="registry1" address="zookeeper://127.0.0.1:2181?registry-type=service"/>
 
-    <dubbo:protocol name="dubbo" port="-1"/>
+    <!--dubbo协议缺省端口为20880，rmi协议缺省端口为1099，http和hessian协议缺省端口为80；如果没有配置port，则自动采用默认端口，如果配置为-1，则会分配一个没有被占用的端口-->
+    <dubbo:protocol name="dubbo" port="-1" />
 
     <bean id="demoService" class="org.apache.dubbo.demo.provider.DemoServiceImpl"/>
     <bean id="greetingService" class="org.apache.dubbo.demo.provider.GreetingServiceImpl"/>
 
-    <dubbo:service interface="org.apache.dubbo.demo.DemoService" timeout="3000" ref="demoService" registry="registry1"/>
+    <!--<dubbo:service interface="org.apache.dubbo.demo.DemoService" timeout="3000" ref="demoService" registry="registry1" version="1.0.1"/>-->
+    <dubbo:service interface="org.apache.dubbo.demo.DemoService" timeout="3000" ref="demoService" registry="registry1">
+        <dubbo:method name="sayHello" timeout="3000"/>
+    </dubbo:service>
     <dubbo:service version="1.0.0" group="greeting" timeout="5000" interface="org.apache.dubbo.demo.GreetingService"
                    ref="greetingService"/>
+
 
 </beans>
